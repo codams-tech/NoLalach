@@ -36,6 +36,27 @@ Clicking the NoLalach icon in the browser toolbar provides real-time market stat
   <img src="assets/screenshots/popup-dashboard.png" alt="NoLalach Toolbar Popup Dashboard" width="400">
 </p>
 
+### 3. Allowed Trading Hours, Presets & 5-Minute Warning Alert
+Easily configure allowed trading windows to match your trading style. One-click preset chips allow instant switching between Indian F&O, Full Day Session, Morning Only, or US Markets. Configure the 5-minute pre-lock desktop alert and toggle supported broker websites:
+
+<p align="center">
+  <img src="assets/screenshots/settings-dashboard.png" alt="NoLalach Settings Dashboard - Trading Hours and Pre-Lock Warning" width="900">
+</p>
+
+### 4. Anti-Tampering Strict Mode & Circuit Breaker
+During market hours, impulsive traders are blocked from altering settings without a mandatory 15-minute cooldown timer and psychological pledge typing test. Also configure weekend locking and daily trade limits:
+
+<p align="center">
+  <img src="assets/screenshots/strict-mode-settings.png" alt="NoLalach Anti-Tampering Strict Mode and General Settings" width="550">
+</p>
+
+### 5. Custom Domains & Incognito Safeguard Status
+Add any custom broker or prop-firm trading terminal. The built-in Incognito monitor actively audits whether private-browsing access is enabled, preventing traders from bypassing lockouts:
+
+<p align="center">
+  <img src="assets/screenshots/incognito-loophole-detected.png" alt="NoLalach Custom Domains and Incognito Safeguard" width="550">
+</p>
+
 ---
 
 ## 🎯 The Problem: Why Traders Blow Accounts
