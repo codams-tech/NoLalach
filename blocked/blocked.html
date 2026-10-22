@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔒 TRADING LOCKED</title>
+  <link rel="stylesheet" href="blocked.css">
+</head>
+<body>
+  <div class="blocked-container">
+    <!-- Animated background particles -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Main content -->
+    <div class="content">
+      <!-- Lock icon -->
+      <div class="lock-icon">
+        <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          <circle cx="12" cy="16" r="1"/>
+        </svg>
+      </div>
+
+      <h1 class="title">TRADING LOCKED</h1>
+      <p class="subtitle" id="lockReason">Outside allowed trading windows</p>
+
+      <!-- Countdown -->
+      <div class="countdown-section">
+        <p class="countdown-label">Next trading window opens in</p>
+        <div class="countdown-timer">
+          <div class="time-unit">
+            <span class="time-value" id="hours">00</span>
+            <span class="time-label">HOURS</span>
+          </div>
+          <span class="time-separator">:</span>
+          <div class="time-unit">
+            <span class="time-value" id="minutes">00</span>
+            <span class="time-label">MINUTES</span>
+          </div>
+          <span class="time-separator">:</span>
+          <div class="time-unit">
+            <span class="time-value" id="seconds">00</span>
+            <span class="time-label">SECONDS</span>
+          </div>
+        </div>
+        <p class="window-name" id="windowName"></p>
+      </div>
+
+      <!-- Quote Carousel -->
+      <div class="quote-card" id="quoteCard">
+        <div class="quote-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+          </svg>
+        </div>
+        <p class="quote-text" id="quoteText"></p>
+        <p class="quote-source" id="quoteSource"></p>
+        <div class="quote-dots" id="quoteDots"></div>
+      </div>
+
+      <!-- Action section -->
+      <div class="action-section">
+        <div class="action-card">
+          <div class="action-icon">💧</div>
+          <p>Drink a glass of water</p>
+        </div>
+        <div class="action-card">
+          <div class="action-icon">🚶</div>
+          <p>Go for a 15-minute walk</p>
+        </div>
+        <div class="action-card">
+          <div class="action-icon">💻</div>
+          <p>Close the laptop lid</p>
+        </div>
+        <div class="action-card">
+          <div class="action-icon">📖</div>
+          <p>Review your trading journal</p>
+        </div>
+      </div>
+
+      <!-- Sanyam branding -->
+      <div class="sanyam-badge">
+        <span class="sanyam-text">संयम</span>
+        <span class="sanyam-tagline">Trade with discipline. Protect your wealth.</span>
+        <span class="sanyam-owner" style="display:block; margin-top:4px; font-size:11px; opacity:0.65;">An open-source product by <a href="https://codams.in" target="_blank" rel="noopener" style="color:inherit; text-decoration:underline;">codams.in</a></span>
+      </div>
+
+      <!-- Close button -->
+      <button class="close-btn" id="closeBtn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+        Close This Tab Now
+      </button>
+    </div>
+  </div>
+
+  <script src="blocked.js"></script>
+</body>
+</html>

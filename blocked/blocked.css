@@ -1,0 +1,393 @@
+/* ============================================================
+   TraderLock — Blocked Page Styles
+   Dark glassmorphism with red accent glow
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-primary: #0a0a0f;
+  --bg-secondary: #12121a;
+  --bg-card: rgba(20, 20, 30, 0.7);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-glow: rgba(220, 38, 38, 0.3);
+  --text-primary: #f0f0f5;
+  --text-secondary: #8a8a9a;
+  --text-muted: #5a5a6a;
+  --accent-red: #dc2626;
+  --accent-red-glow: rgba(220, 38, 38, 0.15);
+  --accent-amber: #f59e0b;
+  --accent-emerald: #10b981;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* ── Animated Background ──────────────────────────────────── */
+
+.blocked-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse at 50% 0%, var(--accent-red-glow) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 40%),
+    var(--bg-primary);
+}
+
+.particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--accent-red);
+  border-radius: 50%;
+  opacity: 0;
+  animation: particleFloat 6s ease-in-out infinite;
+}
+
+@keyframes particleFloat {
+  0% { opacity: 0; transform: translateY(100vh) scale(0); }
+  20% { opacity: 0.6; }
+  80% { opacity: 0.3; }
+  100% { opacity: 0; transform: translateY(-20vh) scale(1.5); }
+}
+
+/* ── Content ──────────────────────────────────────────────── */
+
+.content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 800px;
+  width: 90%;
+  padding: 40px 24px;
+  max-height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.content::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Lock Icon ────────────────────────────────────────────── */
+
+.lock-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-red-glow) 0%, transparent 70%);
+  border: 1px solid var(--border-glow);
+  color: var(--accent-red);
+  margin-bottom: 24px;
+  animation: lockPulse 3s ease-in-out infinite;
+}
+
+@keyframes lockPulse {
+  0%, 100% {
+    box-shadow: 0 0 30px rgba(220, 38, 38, 0.15), 0 0 60px rgba(220, 38, 38, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 50px rgba(220, 38, 38, 0.25), 0 0 100px rgba(220, 38, 38, 0.1);
+  }
+}
+
+/* ── Title ────────────────────────────────────────────────── */
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 900;
+  letter-spacing: 0.15em;
+  color: var(--accent-red);
+  text-shadow: 0 0 40px rgba(220, 38, 38, 0.3);
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+}
+
+/* ── Countdown ────────────────────────────────────────────── */
+
+.countdown-section {
+  margin-bottom: 36px;
+}
+
+.countdown-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 16px;
+}
+
+.countdown-timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.time-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.time-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 3.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1;
+  min-width: 90px;
+  padding: 12px 16px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+}
+
+.time-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.time-separator {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  padding-bottom: 20px;
+  animation: separatorBlink 1s step-end infinite;
+}
+
+@keyframes separatorBlink {
+  50% { opacity: 0.3; }
+}
+
+.window-name {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--accent-amber);
+  margin-top: 12px;
+}
+
+/* ── Quote Carousel ───────────────────────────────────────── */
+
+.quote-card {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 28px 32px;
+  margin-bottom: 32px;
+  backdrop-filter: blur(16px);
+  position: relative;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: border-color 0.3s ease;
+}
+
+.quote-card:hover {
+  border-color: var(--border-glow);
+}
+
+.quote-icon {
+  color: var(--accent-red);
+  opacity: 0.4;
+  margin-bottom: 12px;
+}
+
+.quote-text {
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--text-primary);
+  font-style: italic;
+  transition: opacity 0.5s ease;
+}
+
+.quote-source {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-top: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.quote-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.quote-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-muted);
+  opacity: 0.3;
+  transition: all 0.3s ease;
+}
+
+.quote-dot.active {
+  opacity: 1;
+  background: var(--accent-red);
+  width: 20px;
+  border-radius: 3px;
+}
+
+/* ── Action Cards ─────────────────────────────────────────── */
+
+.action-section {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.action-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 20px 12px;
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+}
+
+.action-card:hover {
+  border-color: var(--accent-emerald);
+  background: rgba(16, 185, 129, 0.05);
+  transform: translateY(-2px);
+}
+
+.action-icon {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.action-card p {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* ── Sanyam Badge ─────────────────────────────────────────── */
+
+.sanyam-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 24px;
+  opacity: 0.5;
+}
+
+.sanyam-text {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.05em;
+}
+
+.sanyam-tagline {
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── Close Button ─────────────────────────────────────────── */
+
+.close-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  background: transparent;
+  border: 1px solid var(--border-glow);
+  border-radius: 12px;
+  color: var(--accent-red);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  letter-spacing: 0.05em;
+}
+
+.close-btn:hover {
+  background: rgba(220, 38, 38, 0.1);
+  border-color: var(--accent-red);
+  box-shadow: 0 0 30px rgba(220, 38, 38, 0.15);
+  transform: translateY(-1px);
+}
+
+.close-btn:active {
+  transform: translateY(0);
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+
+@media (max-width: 700px) {
+  .title {
+    font-size: 1.6rem;
+  }
+  .time-value {
+    font-size: 2.2rem;
+    min-width: 60px;
+    padding: 10px 12px;
+  }
+  .time-separator {
+    font-size: 2rem;
+  }
+  .action-section {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .quote-card {
+    padding: 20px;
+  }
+}
