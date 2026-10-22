@@ -106,7 +106,7 @@ Works on **Chrome**, **Brave**, **Edge**, and any Chromium-based browser.
 
 1. **Clone or Download** this repository:
    ```bash
-   git clone https://github.com/abhishakegupta91/Sanyam.git
+   git clone https://github.com/codams-tech/Sanyam.git
    ```
 
 2. **Open your browser's extension page**:
