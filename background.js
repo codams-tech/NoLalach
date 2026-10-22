@@ -1,5 +1,6 @@
 /* ============================================================
-   TraderLock — Service Worker (background.js)
+   NoLalach — Service Worker (background.js)
+   Anti-Overtrading & Discipline Blocker
    Manifest V3 | Zero dependencies | All state in chrome.storage
    ============================================================ */
 
@@ -7,9 +8,13 @@
 const DEFAULT_CONFIG = {
   // Allowed trading windows (24-hr, local timezone)
   windows: [
-    { id: 'w1', label: 'Opening Momentum', start: '09:00', end: '10:30', enabled: true },
-    { id: 'w2', label: 'Afternoon Session', start: '13:15', end: '15:00', enabled: true }
+    { id: 'w1', label: 'Opening Momentum', start: '09:15', end: '10:30', enabled: true },
+    { id: 'w2', label: 'Afternoon Reversal', start: '13:15', end: '15:00', enabled: true }
   ],
+
+  // 5-minute pre-lockout notification alert
+  preLockWarning: true,
+  preLockMinutes: 5,
 
   // Broker domains — toggled on/off individually
   brokers: [
@@ -297,22 +302,79 @@ async function updateBlockingState() {
     isLocked = true;
   }
 
-  // Update badge
+  // ── Pre-lock Warning Alert (5 min before halt) ───────────────
+  let preLockAlertActive = false;
+  let preLockRemaining = 0;
+  let endingWindow = null;
+
+  if (!isLocked && config.preLockWarning !== false) {
+    const warnMinutes = config.preLockMinutes || 5;
+    const currentMin = getCurrentMinutes();
+    const enabledWindows = config.windows.filter(w => w.enabled);
+
+    for (const w of enabledWindows) {
+      const start = timeToMinutes(w.start);
+      const end = timeToMinutes(w.end);
+      if (currentMin >= start && currentMin < end) {
+        const remaining = end - currentMin;
+        if (remaining <= warnMinutes && remaining > 0) {
+          preLockAlertActive = true;
+          preLockRemaining = remaining;
+          endingWindow = w;
+
+          // Check if we already alerted for this specific window session today
+          const warnKey = `${getToday()}_${w.id || w.label}_${w.end}`;
+          const { lastPreLockWarnKey } = await chrome.storage.local.get('lastPreLockWarnKey');
+
+          if (lastPreLockWarnKey !== warnKey) {
+            await chrome.storage.local.set({ lastPreLockWarnKey: warnKey });
+
+            // Trigger Chrome desktop notification
+            try {
+              if (chrome.notifications && chrome.notifications.create) {
+                chrome.notifications.create(`nolalach-warn-${Date.now()}`, {
+                  type: 'basic',
+                  iconUrl: chrome.runtime.getURL('assets/icons/icon-128.png'),
+                  title: '⚠️ NoLalach: Screen Locking in 5 Minutes!',
+                  message: `Your trading session (${w.label}) ends at ${w.end}. Screen is going to become inaccessible. Wind up all open trades now.`,
+                  priority: 2,
+                  requireInteraction: true
+                });
+              }
+            } catch (notifErr) {
+              console.warn('Pre-lock notification error:', notifErr);
+            }
+          }
+          break;
+        }
+      }
+    }
+  }
+
+  // Update badge and title
   if (isLocked) {
     await chrome.action.setBadgeText({ text: '🔒' });
     await chrome.action.setBadgeBackgroundColor({ color: '#DC2626' });
+    await chrome.action.setTitle({ text: 'NoLalach — TRADING LOCKED' });
+  } else if (preLockAlertActive) {
+    await chrome.action.setBadgeText({ text: `${preLockRemaining}m` });
+    await chrome.action.setBadgeBackgroundColor({ color: '#D97706' });
+    await chrome.action.setTitle({
+      text: `NoLalach — ⚠️ Screen locking in ${preLockRemaining}m! Session ends at ${endingWindow ? endingWindow.end : ''}`
+    });
   } else {
     await chrome.action.setBadgeText({ text: '✓' });
     await chrome.action.setBadgeBackgroundColor({ color: '#16A34A' });
+    await chrome.action.setTitle({ text: 'NoLalach — Trading Allowed' });
   }
 
-  // Check incognito and set badge warning
+  // Check incognito and set badge warning if needed
   const incognitoAllowed = await checkIncognitoAccess();
   if (!incognitoAllowed) {
     const { incognitoWarningDismissed } = await chrome.storage.sync.get('incognitoWarningDismissed');
-    if (!incognitoWarningDismissed) {
+    if (!incognitoWarningDismissed && !preLockAlertActive && !isLocked) {
       await chrome.action.setTitle({
-        text: 'TraderLock — ⚠️ Enable "Allow in Incognito" for full protection!'
+        text: 'NoLalach — ⚠️ Enable "Allow in Incognito" for full protection!'
       });
     }
   }
