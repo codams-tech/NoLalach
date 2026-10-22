@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "TraderLock: Anti-Overtrading & Discipline Blocker",
-  "version": "1.0.0",
-  "description": "Eliminate overtrading, revenge trading, and account blowouts. Bulletproof time-based broker blocking with anti-tampering protection. Sanyam (संयम) — Trade with discipline. Protect your wealth.",
+  "name": "NoLalach: Anti-Overtrading & Discipline Blocker",
+  "version": "1.1.0",
+  "description": "Eliminate greed, overtrading, revenge trading, and account blowouts. Bulletproof time-based broker blocking with 5-min pre-lock warnings and customizable working hours. NoLalach — No Greed. Pure Discipline.",
   "author": "codams.in",
   "homepage_url": "https://codams.in",
   "permissions": [
@@ -10,7 +10,8 @@
     "alarms",
     "webNavigation",
     "tabs",
-    "declarativeNetRequest"
+    "declarativeNetRequest",
+    "notifications"
   ],
   "host_permissions": [
     "*://kite.zerodha.com/*",
@@ -36,7 +37,7 @@
   },
   "action": {
     "default_popup": "popup/popup.html",
-    "default_title": "TraderLock — Discipline Blocker",
+    "default_title": "NoLalach — Discipline Blocker",
     "default_icon": {
       "16": "assets/icons/icon-16.png",
       "48": "assets/icons/icon-48.png",

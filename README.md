@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="assets/icons/icon-128.png" alt="TraderLock Icon" width="80" height="80">
+  <img src="assets/icons/icon-128.png" alt="NoLalach Icon" width="80" height="80">
 </p>
 
-<h1 align="center">TraderLock: Anti-Overtrading & Discipline Blocker</h1>
-<h3 align="center">संयम (Sanyam) — "Trade with discipline. Protect your wealth."</h3>
+<h1 align="center">NoLalach: Anti-Overtrading & Discipline Blocker</h1>
+<h3 align="center">NoLalach (नो लालच) — "No Greed. Pure Discipline. Protect your wealth."</h3>
 
 <p align="center">
   <strong>An open-source product by <a href="https://codams.in">codams.in</a></strong>
@@ -26,14 +26,14 @@
 When a trader attempts to visit broker websites during non-trading hours (e.g. 10:30 AM – 1:15 PM chop zone) or after hitting daily trade limits, the request is intercepted before render and redirected to this high-friction lockout screen with session countdown, 4-7-8 breathing guidance, and psychology quotes:
 
 <p align="center">
-  <img src="assets/screenshots/lockout-screen.png" alt="TraderLock High-Friction Lockout Screen" width="900">
+  <img src="assets/screenshots/lockout-screen.png" alt="NoLalach High-Friction Lockout Screen" width="900">
 </p>
 
 ### 2. Live Toolbar Popup & Session Monitor
-Clicking the TraderLock icon in the browser toolbar provides real-time market status, countdown timer to the next trading session, a live daily trade counter, and one-click "Lock Rest of Day" control:
+Clicking the NoLalach icon in the browser toolbar provides real-time market status, countdown timer to the next trading session, a live daily trade counter, 1-click working hours adjustment, and one-click "Lock Rest of Day" control:
 
 <p align="center">
-  <img src="assets/screenshots/popup-dashboard.png" alt="TraderLock Toolbar Popup Dashboard" width="400">
+  <img src="assets/screenshots/popup-dashboard.png" alt="NoLalach Toolbar Popup Dashboard" width="400">
 </p>
 
 ---
@@ -44,7 +44,7 @@ Traders don't blow accounts because they don't know the rules. They blow account
 
 ### The Three Account Killers
 
-| Killer | What Happens | TraderLock's Solution |
+| Killer | What Happens | NoLalach's Solution |
 |--------|-------------|----------------------|
 | **Chop Zone Trading** (10:30 AM – 1:15 PM) | Low volume, theta decay, false breakouts trap retail option buyers. Institutions accumulate while retailers bleed premiums. | **Time-based lockout** — broker websites redirect to a locked screen during non-trading hours |
 | **Revenge Trading** | A ₹2,000 loss turns into ₹50,000 as the trader takes 10–20 impulsive trades trying to "recover" | **Daily trade counter + circuit breaker** — lock all brokers after max trades are exhausted |
@@ -71,12 +71,22 @@ For Indian equity and F&O markets, the period between 10:30 AM and 1:15 PM is st
 - Redirects to an internal extension page (`blocked.html`) — completely severs the broker's WebSocket feeds, ticker scripts, and DOM
 - Automatically mutes audio and sets tab title to "🔒 TRADING LOCKED"
 
-### ⏰ Configurable Trading Windows
-- **Default Presets for Indian F&O**:
-  - `09:00 - 10:30` — Opening Momentum (highest probability setups)
-  - `13:15 - 15:00` — Afternoon / European Session Reversal
-- Add unlimited custom windows (24-hour format, local timezone)
-- Weekend lock toggle (Saturday & Sunday auto-block)
+### ⏰ Convenient & Customizable Working Hours
+- **Add / Update Hours as Per Your Convenience**: Configure multiple custom trading windows to align with your personal trading style and strategy
+- **Quick One-Click Presets**:
+  - `🇮🇳 Indian F&O (09:15–10:30 & 13:15–15:00)` — Opening Momentum & Afternoon Reversal
+  - `🇮🇳 Full Trading Session (09:15–15:30)` — Continuous Indian Equities / F&O
+  - `🌅 Morning Only (09:15–11:30)` — Scalpers & morning momentum traders
+  - `🌆 Afternoon Only (13:15–15:15)` — European overlap & expiry zero-hero session
+  - `🇺🇸 US Market (19:00–01:30 IST / 09:30–16:00 EST)` — US Equities & Options
+- Individual toggle switch on each window — disable a session without having to delete it
+- Weekend lock toggle (Saturday & Sunday auto-lock)
+
+### ⚠️ 5-Minute Pre-Lockout Warning Alert
+- **No Mid-Trade Lockouts**: Automatically fires a desktop system notification **5 minutes before the screen halts**:
+  > *"⚠️ NoLalach: Screen Locking in 5 Minutes! Your trading session ends at 10:30. Broker screens will become inaccessible. Wind up all open trades now."*
+- **Toolbar Warning Badge**: The extension icon badge flips to an amber countdown (`5m`, `4m`, `3m`...) with a warning tooltip so you always know when the halt is imminent
+- Fully configurable lead time (1–15 minutes) or toggleable in Settings
 
 ### 🏦 Broker Presets & Custom Domains
 One-click toggles for popular Indian brokers:
@@ -124,7 +134,7 @@ Works on **Chrome**, **Brave**, **Edge**, and any Chromium-based browser.
 
 1. **Clone or Download** this repository:
    ```bash
-   git clone https://github.com/codams-tech/Sanyam.git
+   git clone https://github.com/codams-tech/NoLalach.git
    ```
 
 2. **Open your browser's extension page**:
@@ -134,7 +144,7 @@ Works on **Chrome**, **Brave**, **Edge**, and any Chromium-based browser.
 
 3. **Enable Developer Mode** (toggle in the top-right corner)
 
-4. **Click "Load Unpacked"** and select the `Sanyam` folder (the one containing `manifest.json`)
+4. **Click "Load Unpacked"** and select the extension folder (the one containing `manifest.json`)
 
 5. **Pin the extension** to your toolbar for quick access:
    <p align="left">
@@ -143,10 +153,10 @@ Works on **Chrome**, **Brave**, **Edge**, and any Chromium-based browser.
 
 ### ⚠️ CRITICAL: Enable Incognito Access
 
-Without this, traders can easily bypass TraderLock by opening broker websites in an Incognito window. Close this loophole:
+Without this, traders can easily bypass NoLalach by opening broker websites in an Incognito window. Close this loophole:
 
 1. Go to `chrome://extensions`
-2. Find **TraderLock** in the list and click **"Details"**
+2. Find **NoLalach** in the list and click **"Details"**
 3. Scroll down to **"Allow in Incognito"** and toggle it **ON**:
 
 <p align="center">
@@ -158,7 +168,7 @@ Without this, traders can easily bypass TraderLock by opening broker websites in
 ## 🗂️ Project Structure
 
 ```
-Sanyam/
+NoLalach/
 ├── manifest.json              # Manifest V3 configuration
 ├── background.js              # Service worker: time logic, navigation interception, alarms
 ├── blocked/
@@ -227,7 +237,7 @@ Most "website blocker" extensions inject a `<div>` overlay on top of the page. A
 3. Press `Delete`
 4. Continue trading
 
-TraderLock **never loads the broker's page at all**. The `chrome.webNavigation.onBeforeNavigate` listener fires *before* the browser sends the HTTP request. The tab is redirected to an internal `chrome-extension://` page where the broker's code never executes.
+NoLalach **never loads the broker's page at all**. The `chrome.webNavigation.onBeforeNavigate` listener fires *before* the browser sends the HTTP request. The tab is redirected to an internal `chrome-extension://` page where the broker's code never executes.
 
 ### State Management
 
@@ -306,7 +316,7 @@ All windows, broker lists, and settings are fully customizable through the **Opt
 
 ## 📄 License & Product Ownership
 
-TraderLock (संयम) is an open-source product owned and maintained by [codams.in](https://codams.in).
+NoLalach is an open-source product owned and maintained by [codams.in](https://codams.in).
 
 Licensed under the [MIT License](LICENSE). Contributions, suggestions, and feedback are warmly welcomed.
 
@@ -314,16 +324,16 @@ Licensed under the [MIT License](LICENSE). Contributions, suggestions, and feedb
 
 ## 🙏 Philosophy
 
-> **संयम (Sanyam)** — Sanskrit for self-restraint, discipline, and control.
+> **NoLalach (नो लालच)** — Greed is the single greatest destroyer of trading capital.
 
-The market rewards patience and punishes impulse. TraderLock doesn't make you a better trader — it removes the moments where you're your own worst enemy.
+The market rewards patience and punishes impulse. NoLalach doesn't tell you where to buy or sell — it eliminates the impulsive, low-probability chop moments where greed convinces you to take one more trade.
 
-The best trade you'll ever make is the one you didn't take.
+The best trade you'll ever make is the one you had the discipline NOT to take.
 
 ---
 
 <p align="center">
   <strong>Built with discipline, for discipline.</strong><br>
-  <em>Trade with संयम. Protect your wealth.</em><br><br>
+  <em>Trade with NoLalach. Protect your wealth.</em><br><br>
   Crafted as an open-source initiative by <a href="https://codams.in"><strong>codams.in</strong></a>
 </p>
