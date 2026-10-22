@@ -1,0 +1,53 @@
+{
+  "manifest_version": 3,
+  "name": "TraderLock: Anti-Overtrading & Discipline Blocker",
+  "version": "1.0.0",
+  "description": "Eliminate overtrading, revenge trading, and account blowouts. Bulletproof time-based broker blocking with anti-tampering protection. Sanyam (संयम) — Trade with discipline. Protect your wealth.",
+  "author": "codams.in",
+  "homepage_url": "https://codams.in",
+  "permissions": [
+    "storage",
+    "alarms",
+    "webNavigation",
+    "tabs",
+    "declarativeNetRequest"
+  ],
+  "host_permissions": [
+    "*://kite.zerodha.com/*",
+    "*://web.dhan.co/*",
+    "*://groww.in/*",
+    "*://trade.angelone.in/*",
+    "*://pro.upstox.com/*",
+    "*://shoonya.finvasia.com/*",
+    "*://neo.kotak.com/*",
+    "*://skytrading.hdfcsec.com/*",
+    "*://trade.fyers.in/*",
+    "*://in.tradingview.com/*",
+    "*://tradingview.com/*",
+    "*://www.tradingview.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "assets/icons/icon-16.png",
+    "48": "assets/icons/icon-48.png",
+    "128": "assets/icons/icon-128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "TraderLock — Discipline Blocker",
+    "default_icon": {
+      "16": "assets/icons/icon-16.png",
+      "48": "assets/icons/icon-48.png",
+      "128": "assets/icons/icon-128.png"
+    }
+  },
+  "options_page": "options/options.html",
+  "web_accessible_resources": [
+    {
+      "resources": ["blocked/blocked.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
