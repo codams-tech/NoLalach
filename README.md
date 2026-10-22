@@ -20,6 +20,24 @@
 
 ---
 
+## 📸 Product Previews & Live Screenshots
+
+### 1. High-Friction Redirection Lockout Screen
+When a trader attempts to visit broker websites during non-trading hours (e.g. 10:30 AM – 1:15 PM chop zone) or after hitting daily trade limits, the request is intercepted before render and redirected to this high-friction lockout screen with session countdown, 4-7-8 breathing guidance, and psychology quotes:
+
+<p align="center">
+  <img src="assets/screenshots/lockout-screen.png" alt="TraderLock High-Friction Lockout Screen" width="900">
+</p>
+
+### 2. Live Toolbar Popup & Session Monitor
+Clicking the TraderLock icon in the browser toolbar provides real-time market status, countdown timer to the next trading session, a live daily trade counter, and one-click "Lock Rest of Day" control:
+
+<p align="center">
+  <img src="assets/screenshots/popup-dashboard.png" alt="TraderLock Toolbar Popup Dashboard" width="400">
+</p>
+
+---
+
 ## 🎯 The Problem: Why Traders Blow Accounts
 
 Traders don't blow accounts because they don't know the rules. They blow accounts because **in high-cortisol, impulse-driven moments**, they break every rule they've set for themselves.
@@ -118,16 +136,22 @@ Works on **Chrome**, **Brave**, **Edge**, and any Chromium-based browser.
 
 4. **Click "Load Unpacked"** and select the `Sanyam` folder (the one containing `manifest.json`)
 
-5. **Pin the extension** to your toolbar for quick access
+5. **Pin the extension** to your toolbar for quick access:
+   <p align="left">
+     <img src="assets/screenshots/toolbar-pinned.png" alt="Pin extension in Chrome toolbar" width="80">
+   </p>
 
 ### ⚠️ CRITICAL: Enable Incognito Access
 
-Without this, traders can bypass TraderLock by opening broker websites in Incognito mode.
+Without this, traders can easily bypass TraderLock by opening broker websites in an Incognito window. Close this loophole:
 
 1. Go to `chrome://extensions`
-2. Find **TraderLock** in the list
-3. Click **"Details"**
-4. Toggle **"Allow in Incognito"** to **ON**
+2. Find **TraderLock** in the list and click **"Details"**
+3. Scroll down to **"Allow in Incognito"** and toggle it **ON**:
+
+<p align="center">
+  <img src="assets/screenshots/incognito-setup.png" alt="Allow in Incognito Setup" width="800">
+</p>
 
 ---
 
