@@ -18,10 +18,30 @@
   const cooldownMinutes = document.getElementById('cooldownMinutes');
   const cooldownField = document.getElementById('cooldownField');
   const weekendLockToggle = document.getElementById('weekendLockToggle');
-  const maxDailyTrades = document.getElementById('maxDailyTrades');
+  const preLockWarningToggle = document.getElementById('preLockWarningToggle');
+  const preLockMinutesInput = document.getElementById('preLockMinutesInput');
   const incognitoStatus = document.getElementById('incognitoStatus');
   const toast = document.getElementById('toast');
   const toastText = document.getElementById('toastText');
+
+  const PRESETS = {
+    fo: [
+      { id: 'w1', label: 'Opening Momentum', start: '09:15', end: '10:30', enabled: true },
+      { id: 'w2', label: 'Afternoon Reversal', start: '13:15', end: '15:00', enabled: true }
+    ],
+    fullday: [
+      { id: 'w1', label: 'NSE Continuous Session', start: '09:15', end: '15:30', enabled: true }
+    ],
+    morning: [
+      { id: 'w1', label: 'Morning High Momentum', start: '09:15', end: '11:30', enabled: true }
+    ],
+    afternoon: [
+      { id: 'w1', label: 'Afternoon European Overlap', start: '13:15', end: '15:15', enabled: true }
+    ],
+    us: [
+      { id: 'w1', label: 'US Market Regular Hours (IST)', start: '19:00', end: '01:30', enabled: true }
+    ]
+  };
 
   let config = null;
 
@@ -31,9 +51,23 @@
       const result = await chrome.runtime.sendMessage({ type: 'GET_CONFIG' });
       config = result.config;
       renderAll();
+      bindPresets();
     } catch (err) {
       showToast('Error loading configuration', true);
     }
+  }
+
+  function bindPresets() {
+    document.querySelectorAll('.preset-chip').forEach(btn => {
+      btn.onclick = () => {
+        const pKey = btn.dataset.preset;
+        if (PRESETS[pKey]) {
+          config.windows = JSON.parse(JSON.stringify(PRESETS[pKey]));
+          renderWindows();
+          showToast(`Preset loaded: ${btn.textContent.trim()}`);
+        }
+      };
+    });
   }
 
   function renderAll() {
@@ -44,6 +78,8 @@
     cooldownMinutes.value = config.strictModeCooldownMinutes || 15;
     weekendLockToggle.checked = config.weekendLock;
     maxDailyTrades.value = config.maxDailyTrades || 3;
+    if (preLockWarningToggle) preLockWarningToggle.checked = config.preLockWarning !== false;
+    if (preLockMinutesInput) preLockMinutesInput.value = config.preLockMinutes || 5;
     updateCooldownVisibility();
   }
 
@@ -222,10 +258,12 @@
     config.strictModeCooldownMinutes = parseInt(cooldownMinutes.value) || 15;
     config.weekendLock = weekendLockToggle.checked;
     config.maxDailyTrades = parseInt(maxDailyTrades.value) || 3;
+    config.preLockWarning = preLockWarningToggle.checked;
+    config.preLockMinutes = parseInt(preLockMinutesInput.value) || 5;
 
     try {
       await chrome.runtime.sendMessage({ type: 'SAVE_CONFIG', config });
-      showToast('Configuration saved!');
+      showToast('Working hours & settings saved!');
     } catch (err) {
       showToast('Error saving configuration', true);
     }

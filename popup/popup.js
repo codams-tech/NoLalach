@@ -23,11 +23,19 @@
   const optionsLink = document.getElementById('optionsLink');
   const incognitoWarning = document.getElementById('incognitoWarning');
 
-  // ── Options link ───────────────────────────────────────────
+  // ── Options link & Adjust Hours ───────────────────────────────
   optionsLink.addEventListener('click', (e) => {
     e.preventDefault();
     chrome.runtime.openOptionsPage();
   });
+
+  const adjustHoursBtn = document.getElementById('adjustHoursBtn');
+  if (adjustHoursBtn) {
+    adjustHoursBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      chrome.runtime.openOptionsPage();
+    });
+  }
 
   // ── Load Status ────────────────────────────────────────────
   async function loadStatus() {

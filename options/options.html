@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TraderLock — Settings</title>
+  <title>NoLalach — Settings</title>
   <link rel="stylesheet" href="options.css">
 </head>
 <body>
@@ -13,8 +13,8 @@
       <div class="header-brand">
         <span class="brand-sanyam">संयम</span>
         <div class="brand-text">
-          <h1>TraderLock Settings</h1>
-          <p class="brand-tagline">Trade with discipline. Protect your wealth.</p>
+          <h1>NoLalach Settings</h1>
+          <p class="brand-tagline">No Greed. Pure Discipline. Protect your wealth.</p>
         </div>
       </div>
       <div class="header-actions">
@@ -29,14 +29,26 @@
       <!-- Left Column -->
       <div class="options-column">
 
-        <!-- Trading Windows -->
+        <!-- Trading Windows / Working Hours -->
         <section class="card" id="windowsSection">
           <div class="card-header">
             <div class="card-title-group">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-              <h2>Trading Windows</h2>
+              <h2>Allowed Trading Hours</h2>
             </div>
-            <p class="card-desc">Define allowed trading times. All other hours are LOCKED.</p>
+            <p class="card-desc">Define your convenient working & trading hours. All other hours are LOCKED.</p>
+          </div>
+
+          <!-- Quick Presets -->
+          <div class="presets-container">
+            <span class="presets-title">⚡ Quick Presets:</span>
+            <div class="presets-chips">
+              <button type="button" class="preset-chip" data-preset="fo">🇮🇳 Indian F&O (09:15–10:30 & 13:15–15:00)</button>
+              <button type="button" class="preset-chip" data-preset="fullday">🇮🇳 Full Day (09:15–15:30)</button>
+              <button type="button" class="preset-chip" data-preset="morning">🌅 Morning Only (09:15–11:30)</button>
+              <button type="button" class="preset-chip" data-preset="afternoon">🌆 Afternoon Only (13:15–15:15)</button>
+              <button type="button" class="preset-chip" data-preset="us">🇺🇸 US Market (19:00–01:30 IST)</button>
+            </div>
           </div>
 
           <div id="windowsList" class="windows-list">
@@ -45,8 +57,35 @@
 
           <button class="btn btn-add" id="addWindowBtn">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            Add Window
+            Add Custom Trading Window
           </button>
+        </section>
+
+        <!-- Pre-Lock Warning Alert (5 min before halt) -->
+        <section class="card" id="preLockSection">
+          <div class="card-header">
+            <div class="card-title-group">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <h2>Pre-Lockout Warning Alert</h2>
+            </div>
+            <p class="card-desc">Notifies you in advance so you can square off trades before screens halt.</p>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <span class="toggle-label">5-Minute Pre-Lock Notification</span>
+              <span class="toggle-desc">Fires desktop system notification & toolbar countdown warning 5 minutes before screens lock.</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="preLockWarningToggle" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="field-row">
+            <label class="field-label">Warning Lead Time (minutes before halt)</label>
+            <input type="number" id="preLockMinutesInput" class="field-input" value="5" min="1" max="15" step="1">
+          </div>
         </section>
 
         <!-- Strict Mode -->
@@ -163,10 +202,10 @@
           </div>
 
           <div class="incognito-guide">
-            <p class="guide-intro">Without Incognito access, a trader can bypass TraderLock by opening broker websites in an Incognito window. <strong>Fix this now:</strong></p>
+            <p class="guide-intro">Without Incognito access, a trader can bypass NoLalach by opening broker websites in an Incognito window. <strong>Fix this now:</strong></p>
             <ol class="guide-steps">
               <li>Open <code>chrome://extensions</code> in a new tab</li>
-              <li>Find <strong>TraderLock</strong> in the list</li>
+              <li>Find <strong>NoLalach</strong> in the list</li>
               <li>Click <strong>"Details"</strong></li>
               <li>Toggle <strong>"Allow in Incognito"</strong> to ON</li>
             </ol>
@@ -178,15 +217,15 @@
           <div class="card-header">
             <div class="card-title-group">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-              <h2>About TraderLock</h2>
+              <h2>About NoLalach</h2>
             </div>
           </div>
           <p class="section-desc">
-            TraderLock (संयम) is a free, privacy-first open-source browser extension engineered to enforce discipline, stop revenge trading, and eliminate impulsive account blowouts.
+            NoLalach is a free, privacy-first open-source browser extension engineered to eradicate greed, stop revenge trading, and eliminate impulsive account blowouts for retail and options traders.
           </p>
           <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 8px;">
             <div>Product Owner & Maintainer: <a href="https://codams.in" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 600; text-decoration: none;">codams.in</a></div>
-            <div style="font-size: 12px; color: var(--text-muted);">An open-source product for trading psychology & risk restraint.</div>
+            <div style="font-size: 12px; color: var(--text-muted);">Repository: <a href="https://github.com/codams-tech/NoLalach" target="_blank" rel="noopener noreferrer" style="color: var(--accent); text-decoration: underline;">codams-tech/NoLalach</a></div>
           </div>
         </section>
       </div>
