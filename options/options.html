@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TraderLock — Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="options-container">
+    <!-- Header -->
+    <header class="options-header">
+      <div class="header-brand">
+        <span class="brand-sanyam">संयम</span>
+        <div class="brand-text">
+          <h1>TraderLock Settings</h1>
+          <p class="brand-tagline">Trade with discipline. Protect your wealth.</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-save" id="saveBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+          Save Configuration
+        </button>
+      </div>
+    </header>
+
+    <div class="options-grid">
+      <!-- Left Column -->
+      <div class="options-column">
+
+        <!-- Trading Windows -->
+        <section class="card" id="windowsSection">
+          <div class="card-header">
+            <div class="card-title-group">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <h2>Trading Windows</h2>
+            </div>
+            <p class="card-desc">Define allowed trading times. All other hours are LOCKED.</p>
+          </div>
+
+          <div id="windowsList" class="windows-list">
+            <!-- Dynamically populated -->
+          </div>
+
+          <button class="btn btn-add" id="addWindowBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Window
+          </button>
+        </section>
+
+        <!-- Strict Mode -->
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <h2>Anti-Tampering (Strict Mode)</h2>
+            </div>
+            <p class="card-desc">Prevents impulsive unlocking during market hours.</p>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <span class="toggle-label">Enable Strict Mode</span>
+              <span class="toggle-desc">Requires 15-min cooldown + pledge typing to unlock during 9:00–15:30</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="strictModeToggle" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="field-row" id="cooldownField">
+            <label class="field-label">Cooldown Duration (minutes)</label>
+            <input type="number" id="cooldownMinutes" class="field-input" value="15" min="5" max="60" step="5">
+          </div>
+
+          <div class="pledge-preview">
+            <p class="pledge-label">Required Pledge Text (typing test):</p>
+            <p class="pledge-text">"I acknowledge that breaking my trading schedule causes overtrading and account blowouts. I am stepping away from my desk."</p>
+          </div>
+        </section>
+
+        <!-- General Settings -->
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-2.82.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              <h2>General Settings</h2>
+            </div>
+          </div>
+
+          <div class="toggle-row">
+            <div class="toggle-info">
+              <span class="toggle-label">Weekend Lock</span>
+              <span class="toggle-desc">Auto-lock all brokers on Saturday & Sunday</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="weekendLockToggle" checked>
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <div class="field-row">
+            <label class="field-label">Max Daily Trades</label>
+            <input type="number" id="maxDailyTrades" class="field-input" value="3" min="1" max="20">
+          </div>
+        </section>
+      </div>
+
+      <!-- Right Column -->
+      <div class="options-column">
+
+        <!-- Broker Presets -->
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <h2>Broker Domains</h2>
+            </div>
+            <p class="card-desc">Select which broker websites to block during locked hours.</p>
+          </div>
+
+          <div id="brokersList" class="brokers-list">
+            <!-- Dynamically populated -->
+          </div>
+        </section>
+
+        <!-- Custom Domains -->
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <h2>Custom Domains</h2>
+            </div>
+            <p class="card-desc">Add any additional broker or trading domains.</p>
+          </div>
+
+          <div id="customDomainsList" class="brokers-list">
+            <!-- Dynamically populated -->
+          </div>
+
+          <div class="add-domain-row">
+            <input type="text" id="customDomainInput" class="field-input domain-input" placeholder="e.g. broker.example.com">
+            <button class="btn btn-add-domain" id="addDomainBtn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add
+            </button>
+          </div>
+        </section>
+
+        <!-- Incognito Warning -->
+        <section class="card card-warning">
+          <div class="card-header">
+            <div class="card-title-group">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="warning-icon"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+              <h2>Incognito Loophole Warning</h2>
+            </div>
+          </div>
+
+          <div class="incognito-status" id="incognitoStatus">
+            <span class="incognito-badge checking">Checking…</span>
+          </div>
+
+          <div class="incognito-guide">
+            <p class="guide-intro">Without Incognito access, a trader can bypass TraderLock by opening broker websites in an Incognito window. <strong>Fix this now:</strong></p>
+            <ol class="guide-steps">
+              <li>Open <code>chrome://extensions</code> in a new tab</li>
+              <li>Find <strong>TraderLock</strong> in the list</li>
+              <li>Click <strong>"Details"</strong></li>
+              <li>Toggle <strong>"Allow in Incognito"</strong> to ON</li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- About & Product Owner Card -->
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title-group">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <h2>About TraderLock</h2>
+            </div>
+          </div>
+          <p class="section-desc">
+            TraderLock (संयम) is a free, privacy-first open-source browser extension engineered to enforce discipline, stop revenge trading, and eliminate impulsive account blowouts.
+          </p>
+          <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 13px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 8px;">
+            <div>Product Owner & Maintainer: <a href="https://codams.in" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 600; text-decoration: none;">codams.in</a></div>
+            <div style="font-size: 12px; color: var(--text-muted);">An open-source product for trading psychology & risk restraint.</div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+      <span id="toastText">Configuration saved!</span>
+    </div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
