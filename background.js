@@ -18,18 +18,18 @@ const DEFAULT_CONFIG = {
 
   // Broker domains — toggled on/off individually
   brokers: [
-    { domain: 'kite.zerodha.com',       label: 'Zerodha Kite',      enabled: true },
-    { domain: 'web.dhan.co',            label: 'Dhan Web',           enabled: true },
-    { domain: 'groww.in',               label: 'Groww',              enabled: true },
-    { domain: 'trade.angelone.in',      label: 'Angel One',          enabled: true },
-    { domain: 'pro.upstox.com',         label: 'Upstox Pro',         enabled: true },
-    { domain: 'shoonya.finvasia.com',   label: 'Shoonya / Finvasia', enabled: true },
-    { domain: 'neo.kotak.com',          label: 'Kotak Neo',          enabled: false },
-    { domain: 'skytrading.hdfcsec.com', label: 'HDFC Sky',           enabled: false },
-    { domain: 'trade.fyers.in',         label: 'Fyers',              enabled: false },
-    { domain: 'in.tradingview.com',     label: 'TradingView (IN)',   enabled: false },
-    { domain: 'tradingview.com',        label: 'TradingView',        enabled: false },
-    { domain: 'www.tradingview.com',    label: 'TradingView (www)',  enabled: false }
+    { domain: 'kite.zerodha.com', label: 'Zerodha Kite', enabled: true },
+    { domain: 'web.dhan.co', label: 'Dhan Web', enabled: true },
+    { domain: 'groww.in', label: 'Groww', enabled: true },
+    { domain: 'trade.angelone.in', label: 'Angel One', enabled: true },
+    { domain: 'pro.upstox.com', label: 'Upstox Pro', enabled: true },
+    { domain: 'shoonya.finvasia.com', label: 'Shoonya / Finvasia', enabled: true },
+    { domain: 'neo.kotak.com', label: 'Kotak Neo', enabled: false },
+    { domain: 'skytrading.hdfcsec.com', label: 'HDFC Sky', enabled: false },
+    { domain: 'trade.fyers.in', label: 'Fyers', enabled: false },
+    { domain: 'in.tradingview.com', label: 'TradingView (IN)', enabled: false },
+    { domain: 'tradingview.com', label: 'TradingView', enabled: false },
+    { domain: 'www.tradingview.com', label: 'TradingView (www)', enabled: false }
   ],
 
   // Custom user-added domains
@@ -355,17 +355,17 @@ async function updateBlockingState() {
   if (isLocked) {
     await chrome.action.setBadgeText({ text: '🔒' });
     await chrome.action.setBadgeBackgroundColor({ color: '#DC2626' });
-    await chrome.action.setTitle({ text: 'NoLalach — TRADING LOCKED' });
+    await chrome.action.setTitle({ title: 'NoLalach — TRADING LOCKED' });
   } else if (preLockAlertActive) {
     await chrome.action.setBadgeText({ text: `${preLockRemaining}m` });
     await chrome.action.setBadgeBackgroundColor({ color: '#D97706' });
     await chrome.action.setTitle({
-      text: `NoLalach — ⚠️ Screen locking in ${preLockRemaining}m! Session ends at ${endingWindow ? endingWindow.end : ''}`
+      title: `NoLalach — ⚠️ Screen locking in ${preLockRemaining}m! Session ends at ${endingWindow ? endingWindow.end : ''}`
     });
   } else {
     await chrome.action.setBadgeText({ text: '✓' });
     await chrome.action.setBadgeBackgroundColor({ color: '#16A34A' });
-    await chrome.action.setTitle({ text: 'NoLalach — Trading Allowed' });
+    await chrome.action.setTitle({ title: 'NoLalach — Trading Allowed' });
   }
 
   // Check incognito and set badge warning if needed
@@ -374,7 +374,7 @@ async function updateBlockingState() {
     const { incognitoWarningDismissed } = await chrome.storage.sync.get('incognitoWarningDismissed');
     if (!incognitoWarningDismissed && !preLockAlertActive && !isLocked) {
       await chrome.action.setTitle({
-        text: 'NoLalach — ⚠️ Enable "Allow in Incognito" for full protection!'
+        title: 'NoLalach — ⚠️ Enable "Allow in Incognito" for full protection!'
       });
     }
   }
